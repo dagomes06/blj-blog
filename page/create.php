@@ -1,3 +1,24 @@
+<?php
+
+
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    $created_by = $_POST['created_by'];
+    $created_at = $_POST['created_at'];
+    $post_title = $_POST['post_title'];
+    $post_text = $_POST['post_text'];
+
+$send = [
+    "created by: $created_by<br>",
+    "created at: $created_at<br>",
+    "titel: $post_title<br>",
+    "text: $post_text<br>"
+];
+
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
