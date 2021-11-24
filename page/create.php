@@ -1,6 +1,10 @@
 <?php
 
 
+//Daten in Datenbank speichern 
+$dbConnection = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
+$stmt = $dbConnection->prepare('INSERT INTO posts (created_by, created_at, post_title, post_text)');
+
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $created_by = $_POST['created_by'];
     $created_at = $_POST['created_at'];
