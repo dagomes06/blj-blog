@@ -1,0 +1,33 @@
+header{
+    margin-top: 5px;
+    border: 5px solid blue;
+    background-color: blue;
+    color:white;
+    width:70%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-size:250%;
+    border-radius: 15px;
+}
+
+.inhalte{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-wrap:wrap;
+    flex-direction: column;
+}
+
+.fieldset{
+    font-size:125%;
+}
+
+.form-actions {
+    padding-top: 1em;
+    border-top: 1px solid #eee;
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
