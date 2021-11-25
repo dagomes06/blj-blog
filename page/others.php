@@ -15,15 +15,18 @@ include '../include/navigation.php'
 ?>
 
 <?php
-    $pdo = new PDO('mysql:host=mysql2.webland.ch;dbname=d041e_dagomez', 'd041e_dagomez', '54321_Db!!!');
+$pdo2 = new PDO('mysql:host=mysql2.webland.ch;dbname=d041e_dagomez', 'd041e_dagomez', '54321_Db!!!', [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+    ]);
 
-    $sql = "SELECT description, url, FROM urls";
-    foreach ($pdo->query($sql) as $row) { 
-        echo $row['description']; "".$row['url'];
-    }
+$stmt = $pdo2->query('SELECT url, description FROM urls order by description asc');
+$otherblogs = $stmt->fetchAll();
 ?>
 
-
-
+<h2>Zu den anderen Blogs</h2>
+        <?php foreach($otherblogs as $otherblog) { ?>
+        <a href = <?= $otherblog["url"]?>><?= $otherblog["description"]?></a><br>
+        <?php }?>
 </body>
 </html>
