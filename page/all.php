@@ -13,6 +13,28 @@
     <?php
     include '../include/navigation.php'
     ?>
+    <?php
+    $pdo = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
+
+    $sql = "SELECT created_by, created_at, post_title, post_text FROM posts";
+    foreach ($pdo->query($sql) as $row) {
+       echo "Erstellt von: ".$row['created_by']." am: ".$row['created_at']."<br />";
+       echo "Titel: ".$row['post_title']."<br> Beitrag: ".$row['post_text']."<br /><br />";
+    }
+
+
+
+
+?>
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>

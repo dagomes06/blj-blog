@@ -7,3 +7,4 @@
         <a href="others.php">Andere Blogs</a>
     </ul>
 </nav>
+

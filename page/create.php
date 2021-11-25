@@ -1,14 +1,10 @@
 <?php
 $errors = [];
 
-$name = htmlspecialchars($_POST['name'] ?? '');
-$title = htmlspecialchars($_POST['title'] ?? '');
-$note = htmlspecialchars($_POST['note'] ?? '');
-
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    $name = $_POST['name'];
-    $title = $_POST['title'];
-    $note = $_POST['note'];
+    $name = $_POST['name'] ?? '';
+    $title = $_POST['title'] ?? '';
+    $note = $_POST['note'] ?? '';
 
 $send = [
     "created by: $name<br>",
@@ -30,9 +26,8 @@ var_dump($send);
     }
     else{
 $dbConnection = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
-$stmt = $dbConnection->prepare('INSERT INTO posts (created_by, created_at, post_title, post_text));
-VALUES(:user, now(), :titel, :nachricht)');
-$stmt->execute([':user' => $name, ':titel' => $title, ':nachricht' => $note]);
+$stmt = $dbConnection->prepare('INSERT INTO posts (created_by, created_at, post_title, post_text) VALUES(:user, now(), :title, :note)');
+$stmt->execute([':user' => $name, ':title' => $title, ':note' => $note]);
     }
 }
 
@@ -65,22 +60,22 @@ $stmt->execute([':user' => $name, ':titel' => $title, ':nachricht' => $note]);
     ?>
     
     <h3>Erstellen Sie einen Beitrag</h3>
-    <form action ="" method="post">
+    <form action ="create.php" method="post">
     <fieldset class="fieldset">
 
         <div>
             <label class="form-label" for="name">Ihr Name</label><br>
-            <input type="text" id="name" name="name" value="<?= $name ?? '' ?>">
+            <input type="text" id="name" name="name" value="<?=htmlspecialchars($name ?? '' )?>">
         </div>
 
         <div>
             <label class="form-label" for="title">Titel</label><br>
-            <input type="text" id="title" name="title" value="<?= $title ?? '' ?>">
+            <input type="text" id="title" name="title" value="<?= htmlspecialchars($title ?? '' )?>">
         </div>
 
         <div>
          <label class="form-label" for="note">Beitrag</label><br>
-         <textarea name="note"  id="note" cols="40" rows="5" value="<?= $note ?? '' ?>"></textarea>
+         <textarea name="note"  id="note" cols="40" rows="5" value="<?= htmlspecialchars($note ?? '' )?>"></textarea>
         </div>
 
     </form>
@@ -89,6 +84,5 @@ $stmt->execute([':user' => $name, ':titel' => $title, ':nachricht' => $note]);
             <input class="btn btn-primary" type="submit" value="Absenden">
         </div>
     </fieldset>
-
 </body>
 </html>

@@ -15,9 +15,10 @@
         ?>
 
     <div>
-        <p>Lorem Ipsum Lorem IpsumLorem Ipsum Lorem IpsumLorem Ipsum Lorem IpsumLorem 
-        Ipsum Lorem IpsumLorem Ipsum Lorem IpsumLorem Ipsum Lorem IpsumLorem Ipsum Lorem Ipsum</p>
+        <h3>Herzlich Wilkommen auf meiner Webseite. Lesen Sie die Blogs und erstellen Sie selber eins.</h3>
     </div>
+
+    <img src="https://cdn.pixabay.com/photo/2017/01/18/08/25/social-media-1989152_960_720.jpg" alt="social media">
 
 </body>
 </html>
