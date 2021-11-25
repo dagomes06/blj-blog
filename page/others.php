@@ -13,8 +13,6 @@
 <?php
 include '../include/navigation.php'
 
-
-
 /*
 function connectToIPDatabase(){
     try{

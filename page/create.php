@@ -17,7 +17,6 @@ $send = [
 ];
 var_dump($send);
 
-
     if($name === ''){
         $errors[] = 'Bitte geben Sie einen Namen ein';
     }

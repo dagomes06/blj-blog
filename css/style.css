@@ -42,7 +42,7 @@ header{
 .box{
     color: red;
     background-color: rgb(250, 220, 220);
-    border: 1px solid red;
+    border: 2px solid red;
     border-radius: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
