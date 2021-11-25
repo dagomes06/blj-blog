@@ -20,21 +20,7 @@
     foreach ($pdo->query($sql) as $row) {
        echo "Erstellt von: ".$row['created_by']." am: ".$row['created_at']."<br />";
        echo "Titel: ".$row['post_title']."<br> Beitrag: ".$row['post_text']."<br /><br />";
-    }
-
-
-
-
-?>
-
-
-
-
-
-
-
-
-
+    }?>
 
 </body>
 </html>
