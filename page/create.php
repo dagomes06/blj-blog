@@ -5,13 +5,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $name = $_POST['name'] ?? '';
     $title = $_POST['title'] ?? '';
     $note = $_POST['note'] ?? '';
+    $urls = $_POST['urls'] ?? '';
 
 $send = [
     "created by: $name<br>",
     "titel: $title<br>",
     "text: $note<br>"
 ];
-var_dump($send);
 
     if($name === ''){
         $errors[] = 'Bitte geben Sie einen Namen ein';
@@ -24,10 +24,11 @@ var_dump($send);
     if($note === ''){
         $errors[] = 'Bitte geben Sie einen Text ein';
     }
+
     else{
 $dbConnection = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
-$stmt = $dbConnection->prepare('INSERT INTO posts (created_by, created_at, post_title, post_text) VALUES(:user, now(), :title, :note)');
-$stmt->execute([':user' => $name, ':title' => $title, ':note' => $note]);
+$stmt = $dbConnection->prepare('INSERT INTO posts (created_by, created_at, post_title, post_text, urls) VALUES(:user, now(), :title, :note, :urls)');
+$stmt->execute([':user' => $name, ':title' => $title, ':note' => $note, ':urls' => $urls]);
     }
 }
 
@@ -75,7 +76,12 @@ $stmt->execute([':user' => $name, ':title' => $title, ':note' => $note]);
 
         <div>
          <label class="form-label" for="note">Beitrag</label><br>
-         <textarea name="note"  id="note" cols="40" rows="5" value="<?= htmlspecialchars($note ?? '' )?>"></textarea>
+         <textarea name="note"  id="note" cols="40" rows="7" value="<?= htmlspecialchars($note ?? '' )?>"></textarea>
+        </div>
+
+        <div>
+            <label class="form-label" for="urls"> URL eingeben</label><br>
+            <input type="text" id="urls" name="urls" value="<?=htmlspecialchars($urls ?? '')?>">
         </div>
 
     </form>

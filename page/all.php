@@ -11,16 +11,34 @@
     <header class="header">Alle Beiträge</header>
 
     <?php
-    include '../include/navigation.php'
-    ?>
-    <?php
-    $pdo = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
+    include '../include/navigation.php';
 
-    $sql = "SELECT created_by, created_at, post_title, post_text FROM posts";
-    foreach ($pdo->query($sql) as $row) {
-       echo "Erstellt von: ".$row['created_by']." am: ".$row['created_at']."<br />";
-       echo "Titel: ".$row['post_title']."<br> Beitrag: ".$row['post_text']."<br /><br />";
-    }?>
+    $user = 'root';
+    $password = '';
+    $database = 'blog';
+
+    $pdo = new PDO('mysql:host=localhost;dbname=' . $database, $user, $password, [
+        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+        PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    ]);
+    ?>
+<div class="position">
+
+<?php
+
+$stmt = $pdo->query('SELECT * FROM `posts`');
+foreach($stmt->fetchAll() as $x){
+?>
+    <div class="kasten">
+        <div class="post_title"><?php echo($x['post_title'])?></div><br>
+        <div class="post_text"><?php echo($x['post_text'])?></div><br>
+        <div class ="urls"><img class ="picture" src=<?php echo ($x['urls'])?>></div><br>
+        <div class="created_by"><?php echo($x['created_by'])?></div>
+        <div class="created_at"><?php echo($x['created_at'])?></div>
+    </div>
+<?php } ?>
+</div>
 
 </body>
 </html>

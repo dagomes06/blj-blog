@@ -47,3 +47,56 @@ header{
     padding-top: 10px;
     padding-bottom: 10px;
 }
+.kasten{
+    border: 3.141592653px solid blue;
+    margin-top: 10px;
+    border-radius: 10px;
+    max-width: 60%;
+    margin-left:20%;
+
+}
+.position{
+    display:flex;
+    flex-direction:column-reverse;
+}
+
+a:link{
+    text-decoration: none;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+a:hover{
+    color:slategrey;
+}
+.created_by{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-family:cursive;
+    font-size:large;
+}
+.post_title{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    font-size:x-large;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight:bold;
+}
+.created_at{
+    display:flex;
+    justify-content:flex-end;
+    align-items:flex-end;
+    margin-top:-20px;
+}
+.picture {
+    max-width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.urls{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
