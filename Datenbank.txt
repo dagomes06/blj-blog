@@ -1,0 +1,10 @@
+dbname: d041e_dagomez
+username: d041e_dagomez
+passwort: 54321_Db!!!
+
+Tabelle: urls
+
+select description, url from urls
+
+
+insert into urls (description, url) values ('Danis Blog', 'http://10.ip/projekt/page/blog.php')
