@@ -1,6 +1,8 @@
 <?php
+
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $comment = htmlentities($_POST['comment'] ?? '', ENT_QUOTES);
+    $ID = htmlentities($_POST['id'] ?? '', ENT_QUOTES);
     
     if($comment === ''){
     $errors[] = 'Bitte geben Sie ein Kommentar ein';
@@ -8,12 +10,21 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     
         else{
     $dbConnection = new PDO('mysql:host=localhost;dbname=blog', 'root', '',[PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',]);
-    $stmt2 = $dbConnection->prepare('INSERT INTO feedback(comment) VALUES(:comment)');
-    $stmt2->execute([':comment' => $comment]);
+    $stmt = $dbConnection->prepare('INSERT INTO posts(id) VALUES(:id)');
+    $stmt->execute([':id' => $ID]);
         }
     }
-?>
 
+
+    if (isset($_POST["blog-id"])) {
+        $ID = $_POST["blog-id"];
+    }
+
+    if(isset($_POST['Liken']) && $_POST['Liken'] == 'Liken') {
+        $dbConnection = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
+        $stmt = $dbConnection->prepare("UPDATE posts Set likes = likes + 1 WHERE ID = $ID");
+    }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -64,6 +75,11 @@ foreach($stmt->fetchAll() as $x){
 
         </form>
         
+        <form action="all.php" Method = 'POST'>
+                    <input class = liken type="submit" name="Liken" value="Liken" />
+                    <input name="blog-id" type="hidden" value="<?= $data["ID"] ?>" />
+                </form>
+
     </div>
 <?php } ?>
 </div>

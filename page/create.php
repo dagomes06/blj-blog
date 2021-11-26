@@ -6,6 +6,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $title = htmlentities($_POST['title'] ?? '', ENT_QUOTES);
     $note = htmlentities($_POST['note'] ?? '', ENT_QUOTES);
     $urls = htmlentities($_POST['urls'] ?? '', ENT_QUOTES);
+    $ID = htmlentities($_POST['id'] ?? '', ENT_QUOTES);
 
 $send = [
     "created by: $name<br>",
@@ -28,7 +29,7 @@ $send = [
     else{
 $dbConnection = new PDO('mysql:host=localhost;dbname=blog', 'root', '',[PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',]);
 $stmt = $dbConnection->prepare('INSERT INTO posts (created_by, created_at, post_title, post_text, urls) VALUES(:user, now(), :title, :note, :urls)');
-$stmt->execute([':user' => $name, ':title' => $title, ':note' => $note, ':urls' => $urls]);
+$stmt->execute([':user' => $name, ':title' => $title, ':note' => $note, ':urls' => $urls,]);
     }
 }
 
