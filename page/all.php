@@ -35,10 +35,18 @@ foreach($stmt->fetchAll() as $x){
         <div class="post_text"><?php echo($x['post_text'])?></div><br>
         <div class ="urls"><img class ="picture" src=<?php echo ($x['urls'])?>></div><br>
         <div class="created_by"><?php echo($x['created_by'])?></div>
-        <div class="created_at"><?php echo($x['created_at'])?></div>
+        <div class="created_at"><?php echo($x['created_at'])?></div><br>
+       
+        <div>
+            <label class="form-label" for="comment">Kommentar</label><br>
+            <input type="text" id="comment" name="comment" value="<?= htmlspecialchars($comment ?? '' )?>">  
+            <input class="" type="submit" value="Comment">
+        </div>
     </div>
 <?php } ?>
 </div>
+
+
 
 </body>
 </html>

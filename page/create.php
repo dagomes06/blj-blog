@@ -2,10 +2,10 @@
 $errors = [];
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    $name = $_POST['name'] ?? '';
-    $title = $_POST['title'] ?? '';
-    $note = $_POST['note'] ?? '';
-    $urls = $_POST['urls'] ?? '';
+    $name = htmlentities( $_POST['name'] ?? '', ENT_QUOTES);
+    $title = htmlentities($_POST['title'] ?? '', ENT_QUOTES);
+    $note = htmlentities($_POST['note'] ?? '', ENT_QUOTES);
+    $urls = htmlentities($_POST['urls'] ?? '', ENT_QUOTES);
 
 $send = [
     "created by: $name<br>",
@@ -26,7 +26,7 @@ $send = [
     }
 
     else{
-$dbConnection = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
+$dbConnection = new PDO('mysql:host=localhost;dbname=blog', 'root', '',[PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',]);
 $stmt = $dbConnection->prepare('INSERT INTO posts (created_by, created_at, post_title, post_text, urls) VALUES(:user, now(), :title, :note, :urls)');
 $stmt->execute([':user' => $name, ':title' => $title, ':note' => $note, ':urls' => $urls]);
     }
@@ -89,6 +89,7 @@ $stmt->execute([':user' => $name, ':title' => $title, ':note' => $note, ':urls' 
         <div class="form-actions">
             <input class="btn btn-primary" type="submit" value="Absenden">
         </div>
+        
     </fieldset>
 </body>
 </html>
