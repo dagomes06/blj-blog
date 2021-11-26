@@ -89,7 +89,7 @@ $stmt->execute([':user' => $name, ':title' => $title, ':note' => $note, ':urls' 
         <div class="form-actions">
             <input class="btn btn-primary" type="submit" value="Absenden">
         </div>
-        
+
     </fieldset>
 </body>
 </html>

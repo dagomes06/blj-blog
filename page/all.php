@@ -1,10 +1,27 @@
+<?php
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    $comment = htmlentities($_POST['comment'] ?? '', ENT_QUOTES);
+    
+    if($comment === ''){
+    $errors[] = 'Bitte geben Sie ein Kommentar ein';
+    }
+    
+        else{
+    $dbConnection = new PDO('mysql:host=localhost;dbname=blog', 'root', '',[PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',]);
+    $stmt2 = $dbConnection->prepare('INSERT INTO feedback(comment) VALUES(:comment)');
+    $stmt2->execute([':comment' => $comment]);
+        }
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="Stylesheet" href="../css/style.css">
     <title>Alle Beiträge</title>
 </head>
 <body class = "inhalte">
@@ -22,6 +39,7 @@
         PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
     ]);
+
     ?>
 <div class="position">
 
@@ -36,16 +54,19 @@ foreach($stmt->fetchAll() as $x){
         <div class ="urls"><img class ="picture" src=<?php echo ($x['urls'])?>></div><br>
         <div class="created_by"><?php echo($x['created_by'])?></div>
         <div class="created_at"><?php echo($x['created_at'])?></div><br>
-       
+
+        <form action ="all.php" method="post">
         <div>
-            <label class="form-label" for="comment">Kommentar</label><br>
-            <input type="text" id="comment" name="comment" value="<?= htmlspecialchars($comment ?? '' )?>">  
-            <input class="" type="submit" value="Comment">
+         <label for="note">Kommentieren</label><br>
+         <textarea name="comment"  id="comment" cols="50" rows="3" value="<?= htmlspecialchars($comment ?? '' )?>"></textarea> 
+         <input class="" type="submit" value="Comment">
         </div>
+
+        </form>
+        
     </div>
 <?php } ?>
 </div>
-
 
 
 </body>

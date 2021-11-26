@@ -100,3 +100,9 @@ a:hover{
     justify-content: center;
     align-items: center;
 }
+
+.comment{
+    display:flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
