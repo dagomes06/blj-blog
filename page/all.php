@@ -1,23 +1,17 @@
 <?php
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    $comment = htmlentities($_POST['comment'] ?? '', ENT_QUOTES);
     $ID = htmlentities($_POST['id'] ?? '', ENT_QUOTES);
     
-    if($comment === ''){
-    $errors[] = 'Bitte geben Sie ein Kommentar ein';
-    }
-    
-        else{
-    $dbConnection = new PDO('mysql:host=localhost;dbname=blog', 'root', '',[PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',]);
+
+    $dbConnection = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
     $stmt = $dbConnection->prepare('INSERT INTO posts(id) VALUES(:id)');
     $stmt->execute([':id' => $ID]);
         }
-    }
 
 
-    if (isset($_POST["blog-id"])) {
-        $ID = $_POST["blog-id"];
+    if (isset($_POST["likes"])) {
+        $ID = $_POST["likes"];
     }
 
     if(isset($_POST['Liken']) && $_POST['Liken'] == 'Liken') {
@@ -66,18 +60,10 @@ foreach($stmt->fetchAll() as $x){
         <div class="created_by"><?php echo($x['created_by'])?></div>
         <div class="created_at"><?php echo($x['created_at'])?></div><br>
 
-        <form action ="all.php" method="post">
-        <div>
-         <label for="note">Kommentieren</label><br>
-         <textarea name="comment"  id="comment" cols="50" rows="3" value="<?= htmlspecialchars($comment ?? '' )?>"></textarea> 
-         <input class="" type="submit" value="Comment">
-        </div>
-
-        </form>
-        
         <form action="all.php" Method = 'POST'>
                     <input class = liken type="submit" name="Liken" value="Liken" />
-                    <input name="blog-id" type="hidden" value="<?= $data["ID"] ?>" />
+                    <input name="blog-id" type="hidden" value="<?= $posts["ID"] ?>" />
+                    <div class="likes"><?php echo($x['likes'])?></div>
                 </form>
 
     </div>
