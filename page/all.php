@@ -18,7 +18,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
      else if (isset($_POST['post-id-down'])) {
         $id  = $_POST['post-id-down'];
         $pdo->exec("UPDATE posts set likes = likes - 1 where id = " . $id);
-
      }
 }
 ?>
@@ -40,7 +39,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     include '../include/navigation.php';
     ?>
 <div class="position">
-
 <?php
 
 $stmt = $pdo->query('SELECT * FROM `posts`');
@@ -66,7 +64,5 @@ foreach($stmt->fetchAll() as $x){
     </div>
 <?php } ?>
 </div>
-
-
 </body>
 </html>

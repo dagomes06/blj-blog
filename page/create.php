@@ -32,7 +32,6 @@ $stmt = $dbConnection->prepare('INSERT INTO posts (created_by, created_at, post_
 $stmt->execute([':user' => $name, ':title' => $title, ':note' => $note, ':urls' => $urls,]);
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -61,8 +60,7 @@ $stmt->execute([':user' => $name, ':title' => $title, ':note' => $note, ':urls' 
     <?php
     include '../include/navigation.php'
     ?>
-    
-    <h3>Erstellen Sie einen Beitrag</h3>
+    <h3>Erstellen Sie einen Beitrag</h3><br>
     <form action ="create.php" method="post">
     <fieldset class="fieldset">
 

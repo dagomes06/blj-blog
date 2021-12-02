@@ -10,16 +10,12 @@
 </head>
 <body class = "inhalte">
         <header class="header">Mein Blog</header>
-
         <?php
         include '../include/navigation.php'
         ?>
-
     <div>
         <h3>Herzlich Wilkommen auf meiner Webseite. Lesen Sie die Blogs und erstellen Sie selber eins.</h3>
     </div>
-
     <img src="../homepage.webp" alt="social media">
-
 </body>
 </html>

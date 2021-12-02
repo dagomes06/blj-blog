@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="css/style.css">
 <nav>
     <ul class = "navigation">
         <a href="index.php">Hauptseite</a>
