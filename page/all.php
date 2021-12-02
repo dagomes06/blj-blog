@@ -13,7 +13,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     if(isset($_POST['post-id-up'])) {
         $id  = $_POST['post-id-up'];
-       /* echo "ID: " . $id;*/
         $pdo->exec("UPDATE posts set likes = likes + 1 where id = " . $id);
      }
      else if (isset($_POST['post-id-down'])) {
@@ -54,11 +53,15 @@ foreach($stmt->fetchAll() as $x){
         <div class="created_at"><?php echo($x['created_at'])?></div><br>
 
         <form action="all.php" Method = 'POST'>
-
-                    <input type="submit" name="Liken" value="Like">
+                    <input type="image" src="../pictures/daumenhoch.jpg" alt="Finger hoch" name="Liken" value="Like">
                     <input name="post-id-up" type="hidden" value="<?= $x["id"] ?>" />
                     <div class="likes"><?php echo($x['likes'])?></div> 
                 </form>
+        <form action="all.php" Method = 'POST'>
+                    <input type="image" src="../pictures/thumbsdown.jpg" alt="Finger runter" name="Disliken" value="Dislike">
+                    <input name="post-id-down" type="hidden" value="<?= $x["id"] ?>"/>
+
+        </form>
     </div>
 <?php } ?>
 </div>
